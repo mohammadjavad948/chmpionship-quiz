@@ -70,7 +70,11 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        return view('');
+        $data = $quiz->information;
+        return view('Maker.Quiz.view',[
+            'data' => $data,
+            'name' => $quiz->name
+        ]);
     }
 
     /**
