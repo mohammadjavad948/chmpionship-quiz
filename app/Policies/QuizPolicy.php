@@ -42,7 +42,7 @@ class QuizPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -54,7 +54,7 @@ class QuizPolicy
      */
     public function update(User $user, Quiz $quiz)
     {
-        //
+        return $user->id === $quiz->user_id;
     }
 
     /**
@@ -66,7 +66,7 @@ class QuizPolicy
      */
     public function delete(User $user, Quiz $quiz)
     {
-        //
+        return $user->id === $quiz->user_id;
     }
 
     /**

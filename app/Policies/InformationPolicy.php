@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Information;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class InformationPolicy
 {
@@ -18,7 +19,7 @@ class InformationPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -30,7 +31,7 @@ class InformationPolicy
      */
     public function view(User $user, Information $information)
     {
-        //
+        return $user->id === $information->quiz()->user_id;
     }
 
     /**
@@ -41,7 +42,7 @@ class InformationPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -53,7 +54,7 @@ class InformationPolicy
      */
     public function update(User $user, Information $information)
     {
-        //
+        return $user->id === $information->quiz()->user_id;
     }
 
     /**
@@ -65,7 +66,7 @@ class InformationPolicy
      */
     public function delete(User $user, Information $information)
     {
-        //
+        return $user->id === $information->quiz()->user_id;
     }
 
     /**
