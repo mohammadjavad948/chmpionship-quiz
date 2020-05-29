@@ -28,4 +28,7 @@ class User extends Authenticatable
         'password'
     ];
 
+    public function quizzes(){
+        return $this->hasMany(Quiz::class);
+    }
 }
