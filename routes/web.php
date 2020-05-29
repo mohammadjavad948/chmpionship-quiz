@@ -17,7 +17,8 @@ Route::get('/', 'HomeController@index');
 Route::redirect('/home','/quiz')->name('home');
 
 Route::resources([
-    '/quiz' => 'Maker\QuizController'
+    '/quiz' => 'Maker\QuizController',
+    '/information' => 'Maker\InformationController'
 ]);
 
 Auth::routes();
