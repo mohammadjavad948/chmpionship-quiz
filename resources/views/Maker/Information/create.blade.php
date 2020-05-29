@@ -5,8 +5,16 @@
         <div class="row">
             <h1>add data</h1>
         </div>
+        @if(session('success') == true)
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>file saved!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <div class="row">
-            <form action="{{route('information.store')}}" method="post" enctype="multipart/form-data">
+            <form enctype="multipart/form-data" action="{{route('information.store')}}" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="name">name</label>

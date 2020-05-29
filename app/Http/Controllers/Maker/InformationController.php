@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Information;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class InformationController extends Controller
 {
@@ -45,7 +47,18 @@ class InformationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateRequest($request->all())->validate();
+        $path = $request->file('file')->store('image');
+
+        $path = Str::of($path)->replace('image','/storage/image');
+
+        Information::create([
+            'name' => $request->name,
+            'picture_url' => $path,
+            'quiz_id' => $request->quiz
+        ]);
+        session()->flash('success',true);
+        return redirect()->back();
     }
 
     /**
@@ -91,5 +104,13 @@ class InformationController extends Controller
     public function destroy(Information $information)
     {
         //
+    }
+
+    public function validateRequest(Array $data){
+        return Validator::make($data,[
+            'name' => 'required|string',
+            'quiz' => 'required|numeric',
+            'file' => 'required|mimes:jpeg,bmp,png'
+        ]);
     }
 }
