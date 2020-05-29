@@ -51,7 +51,7 @@ class QuizController extends Controller
     {
         $this->validateRequest($request->all())->validate();
 
-        $slug = Str::of($request->name.auth()->user()->name.now())->slug();
+        $slug = Str::of($request->name.auth()->user()->name.'-'.now())->slug();
 
         Quiz::create([
            'name' => $request->name,
@@ -81,7 +81,9 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        return view('');
+        return view('Maker.Quiz.edit',[
+            'data' => $quiz
+        ]);
     }
 
     /**
@@ -95,7 +97,7 @@ class QuizController extends Controller
     {
         $this->validateRequest($request->all())->validate();
 
-        $slug = Str::of($request->name.auth()->user()->name.now())->slug();
+        $slug = Str::of($request->name.auth()->user()->name.'-'.now())->slug();
 
         $quiz->update([
            'name' => $request->name,
