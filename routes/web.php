@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
+Route::redirect('/home','/quiz')->name('home');
 
 Route::resources([
     '/quiz' => 'Maker\QuizController'
