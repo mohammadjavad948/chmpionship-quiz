@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Maker;
 
 use App\Http\Controllers\Controller;
 use App\Quiz;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -24,7 +25,10 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return view('Maker.Quiz.index');
+        $data = User::find(auth()->id())->quizzes()->get();
+        return view('Maker.Quiz.index',[
+            'data' => $data
+        ]);
     }
 
     /**
