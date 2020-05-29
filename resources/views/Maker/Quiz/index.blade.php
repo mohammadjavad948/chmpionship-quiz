@@ -14,6 +14,7 @@
                     <h2 class="card-title">{{$d->name}}</h2>
                     <div class="card-body">
                         <div class="row">
+                            <a href="{{route('information.create')}}" class="btn btn-light">add data</a>
                             <a href="{{route('quiz.edit',$d->id)}}" class="btn btn-warning ml-4">edit</a>
                             <a href="{{route('quiz.show',$d->id)}}" class="btn btn-success ml-4">view</a>
                             <form action="{{route('quiz.destroy',$d->id)}}" method="post">
