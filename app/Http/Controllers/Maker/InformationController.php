@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Maker;
 
 use App\Http\Controllers\Controller;
 use App\Information;
+use App\User;
 use Illuminate\Http\Request;
 
 class InformationController extends Controller
@@ -30,7 +31,10 @@ class InformationController extends Controller
      */
     public function create()
     {
-        return view('Maker.Information.create');
+        $data = User::find(auth()->id())->quizzes;
+        return view('Maker.Information.create',[
+            'data' => $data
+        ]);
     }
 
     /**

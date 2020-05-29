@@ -6,7 +6,7 @@
             <h1>add data</h1>
         </div>
         <div class="row">
-            <form action="{{route('information.store')}}" method="post">
+            <form action="{{route('information.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">name</label>
@@ -15,6 +15,14 @@
                 <div class="form-group">
                     <label for="file">picture</label>
                     <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <div class="form-group">
+                    <label for="quiz">select your quiz</label>
+                    <select name="quiz" id="quiz" class="form-control">
+                        @foreach($data as $d)
+                            <option value="{{$d->id}}">{{$d->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-success">create</button>
             </form>
