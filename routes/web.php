@@ -21,5 +21,11 @@ Route::resources([
     '/information' => 'Maker\InformationController'
 ]);
 
+Route::get('/start/{quiz:slug}','')
+    ->name('quiz.start');
+
+Route::post('/next','')
+    ->name('quiz.next');
+
 Auth::routes();
 
