@@ -71,7 +71,7 @@ class InformationController extends Controller
      */
     public function show(Information $information)
     {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -82,7 +82,7 @@ class InformationController extends Controller
      */
     public function edit(Information $information)
     {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -94,7 +94,7 @@ class InformationController extends Controller
      */
     public function update(Request $request, Information $information)
     {
-        //
+        return redirect()->back();
     }
 
     /**
