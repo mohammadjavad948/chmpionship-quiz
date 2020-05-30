@@ -54,7 +54,9 @@ class InformationPolicy
      */
     public function update(User $user, Information $information)
     {
-        return $user->id === $information->quiz()->user_id;
+        $data = $information->quiz;
+
+        return $user->id === $data["user_id"];
     }
 
     /**
@@ -66,7 +68,9 @@ class InformationPolicy
      */
     public function delete(User $user, Information $information)
     {
-        return $user->id === $information->quiz()->user_id;
+        $data = $information->quiz;
+
+        return $user->id === $data["user_id"];
     }
 
     /**

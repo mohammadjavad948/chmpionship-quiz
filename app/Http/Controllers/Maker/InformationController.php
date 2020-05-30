@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Information;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -48,6 +49,7 @@ class InformationController extends Controller
     public function store(Request $request)
     {
         $this->validateRequest($request->all())->validate();
+
         $path = $request->file('file')->store('image');
 
         $path = Str::of($path)->replace('image','/storage/image');
@@ -103,7 +105,15 @@ class InformationController extends Controller
      */
     public function destroy(Information $information)
     {
-        //
+        $path = Str::of($information->picture_url)->replace('/storage/','');
+
+        $message = Storage::disk('public')->delete($path);
+
+        $information->delete();
+
+        session()->flash('success', $message);
+
+        return redirect()->back();
     }
 
     public function validateRequest(Array $data){
