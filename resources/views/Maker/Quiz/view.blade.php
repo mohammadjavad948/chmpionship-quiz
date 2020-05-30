@@ -5,6 +5,12 @@
         <div class="row">
             <h1>{{$name}}</h1>
         </div>
+        <div class="row">
+            <p>
+                share link:
+                {{route('quiz.start',$slug)}}
+            </p>
+        </div>
         @if(session('success') == true)
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>card removed!</strong>

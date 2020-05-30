@@ -27,5 +27,8 @@ Route::get('/start/{quiz:slug}','QuizController@start')
 Route::post('/next','QuizController@next')
     ->name('quiz.next');
 
+Route::get('/reset','QuizController@reset')
+    ->name('quiz.reset');
+
 Auth::routes();
 

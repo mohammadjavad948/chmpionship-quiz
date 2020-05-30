@@ -73,7 +73,8 @@ class QuizController extends Controller
         $data = $quiz->information;
         return view('Maker.Quiz.view',[
             'data' => $data,
-            'name' => $quiz->name
+            'name' => $quiz->name,
+            'slug' => $quiz->slug
         ]);
     }
 
