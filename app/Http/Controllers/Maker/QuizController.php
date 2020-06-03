@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -120,8 +121,17 @@ class QuizController extends Controller
      */
     public function destroy(Quiz $quiz)
     {
+        foreach ($quiz->information() as $information){
+            $path = Str::of($information['picture_url'])->replace('/storage/','');
+
+            Storage::disk('public')->delete($path);
+        }
+
         $quiz->information()->delete();
+
         $quiz->delete();
+
+         return redirect()->back();
     }
 
     public function validateRequest(Array $data){
